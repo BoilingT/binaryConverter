@@ -1,30 +1,33 @@
 package binaryConverter.converter;
 
-import javax.swing.JTextArea;
+import javax.swing.JLabel;
 
 public class BinaryHandler implements Runnable{
 	private Object input;
-	private JTextArea out;
+	private JLabel out;
 	
-	public BinaryHandler(String binary, JTextArea out) {
+	public BinaryHandler(String binary, JLabel out) {
 		input = binary;
 		this.out = out;
 	}
 	
-	public BinaryHandler(double dec, JTextArea out) {
+	public BinaryHandler(double dec, JLabel out) {
 		input = dec;
 		this.out = out;
 	}
 	
-	public String ToBin(double dec) {
-		//12
-		
+	public String ToBin(double dec) {		
 		String result = "";
-		String decStr = String.valueOf(dec);
-		double inputSize = decStr.length();
 		
 		int[] binary = new int[]{128, 64, 32, 16, 8, 4, 2, 1};
 		int[] binResult = new int[8]; //128 64 32 16 8 4 2 1
+
+		if (String.valueOf(dec).length() <= 0) {
+			for (int i : binResult) {
+				result += (i);
+			}
+			return result;
+		}
 		
 		for (int i = 0; i < binary.length; i++) {
 			double testValue = binary[i];

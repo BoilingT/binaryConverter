@@ -12,9 +12,7 @@ public class WindowHandler extends JFrame{
 		this.setTitle(title);
 
 		setPreferredSize(new Dimension(width, height));
-		setSize(new Dimension(width, height));
-		setMinimumSize(new Dimension(width, height));
-		
+		setSize(new Dimension(width, height));		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
