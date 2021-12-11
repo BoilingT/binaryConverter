@@ -1,13 +1,9 @@
 package binaryConverter.main;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import binaryConverter.global.*;
 import binaryConverter.converter.*;
@@ -19,7 +15,7 @@ public class Main {
 	private static JTextArea inputField = new JTextArea("0");
 	
 	private static JPanel resultPanel = new JPanel();
-	private static JTextArea outputField = new JTextArea("NULL");
+	private static JTextArea outputField = new JTextArea("00000000");
 	
 	public static void main(String[] args) {
 		//Input field
@@ -40,13 +36,13 @@ public class Main {
 	}
 	
 	private static void printDecToBin(double dec) {
-		if (dec != 0) {
+		if (dec != 0 && dec <= 255) {
 			new Thread(new BinaryHandler(dec, outputField)).start();			
 		}
 	}
 	
 	private static void printBinToDec(String bin) {
-		if (bin.length() > 0) {
+		if (bin.length() > 0 && bin.length() <= 8) {
 			new Thread(new BinaryHandler(bin, inputField)).start();						
 		}
 	}
@@ -86,7 +82,6 @@ public class Main {
 					return;
 				}
 			}
-			System.out.println();
 		}
 		
 		@Override
