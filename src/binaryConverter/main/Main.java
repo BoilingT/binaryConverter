@@ -36,13 +36,13 @@ public class Main {
 	}
 	
 	private static void printDecToBin(double dec) {
-		if (dec != 0 && dec <= 255) {
+		if (dec != 0 && dec <= 256) {
 			new Thread(new BinaryHandler(dec, outputField)).start();			
 		}
 	}
 	
 	private static void printBinToDec(String bin) {
-		if (bin.length() > 0 && bin.length() <= 8) {
+		if (bin.length() > 0 && bin.length() <= 9) {
 			new Thread(new BinaryHandler(bin, inputField)).start();						
 		}
 	}

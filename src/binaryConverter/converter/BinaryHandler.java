@@ -3,7 +3,7 @@ package binaryConverter.converter;
 import javax.swing.JTextArea;
 
 public class BinaryHandler implements Runnable{
-	private static int[] BINNUMBS = new int[]{128, 64, 32, 16, 8, 4, 2, 1};
+	private int[] BINNUMBS = new int[]{256, 128, 64, 32, 16, 8, 4, 2, 1};
 	private Object input;
 	private JTextArea out;
 
@@ -21,7 +21,7 @@ public class BinaryHandler implements Runnable{
 	public String ToBin(double dec) {		
 		String result = "";
 		
-		int[] binResult = new int[8];
+		int[] binResult = new int[9];
 
 		if (String.valueOf(dec).length() <= 0) {
 			for (int i : binResult) {
@@ -36,13 +36,17 @@ public class BinaryHandler implements Runnable{
 				if (binResult[i] >= 1) break;
 				binResult[i]++;
 			}
-			//System.out.println("dec = " + dec + " :: " + testValue + ": " + subtractions);
+			//System.out.println("dec = " + dec + " :: " + testValue + ": " + binResult[i]);
 			dec -= testValue * binResult[i];
 		}
 
-		for (int i : binResult) {
-			result += (i);
+		for (int i = 0; i < binResult.length; i++) {
+			if (i == 0 && binResult[i] == 0) {
+				continue;
+			}
+			result += binResult[i];
 		}
+		//System.out.println();
 		return result;
 	}
 	
@@ -52,7 +56,7 @@ public class BinaryHandler implements Runnable{
 		int startIndex = BINNUMBS.length-bin.length();
 		
 		int index = 0;
-		for (int i = startIndex; i < 8; i++) {
+		for (int i = startIndex; i < BINNUMBS.length; i++) {
 			int binValue = BINNUMBS[i];
 			int binStrValue = Integer.parseInt(String.valueOf(bin.charAt(index++)));
 			if (binStrValue >= 2) return 0;
