@@ -60,10 +60,12 @@ public class BinaryHandler implements Runnable{
 			int binValue = BINNUMBS[i];
 			int binStrValue = Integer.parseInt(String.valueOf(bin.charAt(index++)));
 			if (binStrValue >= 2) return 0;
+			
 			//System.out.print("(" + binValue + "*" + (binStrValue) + ")"  + " + ");
 			result +=  binValue * (binStrValue);
 		}
 		//System.out.println();
+		if(result > Math.pow(2, 8)) return 0;
 		return result;
 	}
 
